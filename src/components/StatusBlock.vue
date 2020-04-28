@@ -1,7 +1,5 @@
 <template>
-  <v-card
-    shaped
-  >
+  <v-card>
     <v-card-title>
       {{ title }}
     </v-card-title>
@@ -30,9 +28,9 @@
         if (this.status == 1) {
           return "Operational";
         } else if (this.status == 2) {
-          return "Paritial Outage";
+          return "Service appears to be down";
         } else {
-          return "Full Outage";
+          return "Service is down";
         }
       },
       componentColor: function () {

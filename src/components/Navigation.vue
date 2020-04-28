@@ -1,41 +1,28 @@
 <template>
-  <v-navigation-drawer
-    app
-    mini-variant
-    expand-on-hover
-  >
-    <v-list
-      dense
-      nav
-      class="py-0"
+  <div>
+    <v-app-bar app dark clipped-left>
+      <v-app-bar-nav-icon @click="drawer = !drawer"></v-app-bar-nav-icon>
+
+      <v-toolbar-title>Extreme-Network</v-toolbar-title>
+
+      <v-spacer></v-spacer>
+
+      <v-btn icon @click="changeTheme">
+        <v-icon>mdi-invert-colors</v-icon>
+      </v-btn>
+    </v-app-bar>
+    <v-navigation-drawer
+      v-model="drawer"
+      app
+      clipped
     >
-      <v-list-item two-line class="px-0">
-        <v-list-item-avatar>
-          <img src="https://randomuser.me/api/portraits/men/81.jpg">
-        </v-list-item-avatar>
-
-        <v-list-item-content>
-          <v-list-item-title>Application</v-list-item-title>
-        </v-list-item-content>
-      </v-list-item>
-
-      <v-divider></v-divider>
-
-      <v-list-item
-          v-for="item in items"
-          :key="item.title"
-          link
-        >
-          <v-list-item-icon>
-            <v-icon>{{ item.icon }}</v-icon>
-          </v-list-item-icon>
-
-          <v-list-item-content>
-            <v-list-item-title>{{ item.title }}</v-list-item-title>
-          </v-list-item-content>
+      <v-list>
+        <v-list-item>
+          Work in Progress
         </v-list-item>
-    </v-list>
-  </v-navigation-drawer>
+      </v-list>
+    </v-navigation-drawer>
+  </div>
 </template>
 
 <script>
@@ -43,11 +30,22 @@
     name: 'Navigation',
     data: function () {
       return {
-        items: [
-          { title: 'Photos', icon: 'mdi-image' },
-          { title: 'About', icon: 'mdi-help-box' },
-          { title: 'Sign out', icon: 'mdi-logout' },
-        ]
+        drawer: false
+      }
+    },
+    methods: {
+      changeTheme: function () {
+        // Set to light
+        if (this.$vuetify.theme.dark) {
+          this.$vuetify.theme.dark = false;
+          this.$cookies.set('theme', 'light', '10y')
+        }
+
+        // Set to dark
+        else {
+          this.$vuetify.theme.dark = true;
+          this.$cookies.set('theme', 'dark', '10y')
+        }
       }
     }
   }
