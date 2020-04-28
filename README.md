@@ -1,4 +1,6 @@
-# status-page
+# Extreme-Network Status Page (WIP)
+
+This project is designed to be the 'status' page for Extreme-Network servers and forums.
 
 ## Project setup
 ```
