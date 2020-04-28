@@ -1,7 +1,11 @@
 {
   "name": "status-page",
-  "version": "0.1.0",
-  "private": true,
+  "version": "1.0.0",
+  "author": {
+      "name": "Joram",
+      "email": "joram@extreme-network.net",
+      "url": "https://extreme-network.net"
+  },
   "scripts": {
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
