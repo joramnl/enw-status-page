@@ -45,3 +45,17 @@
     }
   }
 </script>
+
+<style scoped>
+    .v-card {
+        display: flex;
+        align-items: center;
+        vertical-align: middle;
+        justify-content: space-between;
+    }
+
+    .v-card__subtitle {
+        padding: 16px !important;
+        margin-top: 0 !important;
+    }
+</style>
