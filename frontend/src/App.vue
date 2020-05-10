@@ -1,3 +1,7 @@
+<style lang="scss">
+  @import './scss/tooltip.scss';
+</style>
+
 <template>
   <v-app>
     <Navigation />
@@ -34,7 +38,10 @@
             align="center"
             justify="center"
           >
-            <v-col md="4">
+            <v-col
+              xl="6"
+              lg="12"
+            >
               <StatusBlock 
                 :title="item.name" 
                 :description="item.description"
@@ -44,16 +51,6 @@
             </v-col>
           </v-row>
         </v-fade-transition>
-
-        <v-row
-          align="center"
-          justify="center"
-          v-if="!loading"
-        >
-          <v-col md="4" class="text-center mt-5">
-            <span class="caption font-weight-light">Updates every 5 minutes</span>
-          </v-col>
-        </v-row>
       </v-container>
     </v-content>
     <v-footer
@@ -63,7 +60,7 @@
         class="text-center"
         cols="12"
       >
-        &copy; {{ new Date().getFullYear() }} — <strong>Joram</strong>
+        &copy; {{ new Date().getFullYear() }} — <strong v-tooltip="'You have ' + 1 + ' new messages.'">Joram</strong>
       </v-col>
     </v-footer>
   </v-app>
@@ -79,7 +76,7 @@
   export default {
     name: 'App',
     components: {
-      'StatusBlock': StatusBlock,
+      StatusBlock,
       StatusMessage,
       Navigation
     },

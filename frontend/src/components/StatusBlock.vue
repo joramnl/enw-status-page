@@ -6,17 +6,20 @@
     <v-card-subtitle>
       <span :class="componentColor">{{ componentStatus }}</span>
     </v-card-subtitle>
-    <v-card-text
-      v-if="message"
-    >
-      {{ message }}
+    <v-card-text>
+      <StatusTimeline />
     </v-card-text>
   </v-card>
 </template>
 
 <script>
+  import StatusTimeline from './StatusTimeline'
+
   export default {
     name: 'StatusBlock',
+    components: {
+        StatusTimeline
+    },
     props: {
       title: String,
       description: String,
@@ -46,16 +49,17 @@
   }
 </script>
 
-<style scoped>
-    .v-card {
-        display: flex;
-        align-items: center;
-        vertical-align: middle;
-        justify-content: space-between;
-    }
-
-    .v-card__subtitle {
-        padding: 16px !important;
-        margin-top: 0 !important;
-    }
+<style lang="scss" scoped>
+.v-card {
+  display: flex;
+  align-items: center;
+  vertical-align: middle;
+  justify-content: space-between;
+  flex-wrap: wrap;
+    
+  & .v-card__subtitle {
+    padding: 16px !important;
+    margin-top: 0 !important;
+  }
+}
 </style>

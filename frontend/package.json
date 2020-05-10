@@ -1,10 +1,10 @@
 {
   "name": "status-page",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "author": {
-      "name": "Joram",
-      "email": "joram@extreme-network.net",
-      "url": "https://extreme-network.net"
+    "name": "Joram",
+    "email": "joram@extreme-network.net",
+    "url": "https://extreme-network.net"
   },
   "scripts": {
     "serve": "vue-cli-service serve",
@@ -14,6 +14,7 @@
   "dependencies": {
     "axios": "^0.19.2",
     "core-js": "^3.6.4",
+    "v-tooltip": "^2.0.3",
     "vue": "^2.6.11",
     "vue-cookies": "^1.7.0",
     "vuetify": "^2.2.11"

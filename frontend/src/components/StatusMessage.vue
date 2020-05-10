@@ -24,7 +24,7 @@
     class="mt-5"
   >
     <v-fade-transition>
-      <v-icon class="status-icon" :class="iconClass" size="64">
+      <v-icon class="status-icon" dark :class="iconClass" size="64">
         {{ icon }}
       </v-icon>
     </v-fade-transition>
