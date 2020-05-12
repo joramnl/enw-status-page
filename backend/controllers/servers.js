@@ -25,7 +25,9 @@ router.get('/:serverPort', (req, res) => {
             current_map,
             max_players,
             playercount,
-            format: playercount + "/" + max_players
+            format: playercount + "/" + max_players,
+            ip: process.env.SERVER_IP,
+            port: req.params.serverPort
         })
     }).catch((error) => {
         console.error(error)

@@ -47,7 +47,7 @@
                 :description="item.description"
                 :status="item.status"
                 :message="item.message"
-                :port="27015"
+                :port="item.port"
               />
             </v-col>
           </v-row>
@@ -135,6 +135,32 @@
                 default:
                   service.status = 3;
                   break;
+              }
+              
+              switch(service.name) {
+                  case "HnS/ChaseMod":
+                    service.port = 27035
+                    break
+
+                  case "Jailbreak":
+                    service.port = 27015
+                    break
+                    
+                  case "Retakes #1":
+                    service.port = 27020
+                    break
+                    
+                  case "Retakes #2":
+                    service.port = 27025
+                    break
+                    
+                  case "Surf Combat":
+                    service.port = 27050
+                    break
+
+                  default:
+                    service.port = null
+                    break
               }
 
               this.api.services.push(service);
