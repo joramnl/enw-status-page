@@ -1,3 +1,3 @@
 export default {
-    API_URL: "http://185.44.78.134:3000"
+    API_URL: "http://status.extreme-network.net:2053"
 }
