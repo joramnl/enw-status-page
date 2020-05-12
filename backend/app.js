@@ -10,4 +10,4 @@ app.use(function (err, req, res, next) {
     res.status(500).send({error: "Internal Server Error 500"})
 })
 
-app.listen(process.env.PORT);
+app.listen(process.env.PORT, () => console.log(`Running on port ${process.env.PORT}`));
