@@ -7,6 +7,9 @@
 
       <v-spacer></v-spacer>
 
+      <v-btn icon @click="requestRefresh">
+        <v-icon>mdi-refresh</v-icon>
+      </v-btn>
       <v-btn icon @click="changeTheme">
         <v-icon>mdi-invert-colors</v-icon>
       </v-btn>
@@ -17,8 +20,14 @@
       clipped
     >
       <v-list>
-        <v-list-item>
-          Work in Progress
+        <v-list-item link>
+          <v-list-item-icon>
+            <v-icon>mdi-alert-circle-check-outline</v-icon>
+          </v-list-item-icon>
+
+          <v-list-item-content>
+            <v-list-item-title>Status</v-list-item-title>
+          </v-list-item-content>
         </v-list-item>
       </v-list>
     </v-navigation-drawer>
@@ -46,6 +55,9 @@
           this.$vuetify.theme.dark = true;
           this.$cookies.set('theme', 'dark', '10y')
         }
+      },
+      requestRefresh: function () {
+        this.$emit('refresh')
       }
     }
   }

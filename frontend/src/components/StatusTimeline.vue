@@ -16,7 +16,7 @@
         v-tooltip.bottom="{
           content: `
           <strong>${getDate(index - 1)}</strong><br>
-          <span>No downtime recorded today</span>
+          <span>No downtime recorded on this day.</span>
           `,
           classes: tooltipClasses,
           delay: {
@@ -28,8 +28,6 @@
     </svg>
     <div class="label">
       <span>{{ dayCount }} days ago</span>
-      <span class="spacer"></span>
-      <span>{{ uptime }}% uptime</span>
       <span class="spacer"></span>
       <span>Today</span>
     </div>
@@ -116,6 +114,5 @@
     flex-grow: 1;
     height: 1px;
     margin: 0 8px;
-    background: #555;
   }
 </style>

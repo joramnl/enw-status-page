@@ -4,7 +4,9 @@ import vuetify from './plugins/vuetify'
 import VTooltip from 'v-tooltip'
 import Vuex from 'vuex'
 
-Vue.use(VTooltip)
+Vue.use(VTooltip, {
+    defaultAutoHide: false
+})
 Vue.use(Vuex)
 
 Vue.config.productionTip = false

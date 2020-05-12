@@ -4,7 +4,7 @@
 
 <template>
   <v-app>
-    <Navigation />
+    <Navigation @refresh="refresh" />
 
     <v-content>
       <v-container>
@@ -102,11 +102,6 @@
 
         return problems != 0;
       }
-    },
-    watch: {
-        loading: function(val) {
-            if (!val) console.log("done loading")
-        }
     },
     methods: {
       refresh: function () {

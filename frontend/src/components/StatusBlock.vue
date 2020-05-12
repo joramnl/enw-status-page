@@ -1,25 +1,29 @@
 <template>
   <v-card>
     <v-card-title>
-      {{ title }} 
-      <span 
+      {{ title }}
+      <a 
         v-if="port" 
-        class="playerIndicator" 
+        class="playerIndicator"
+        :class="playerIndicatorColor"
+        :href="joinLink"
         v-tooltip.bottom="{
           content: `
           <strong>${this.server_name}</strong><br><br>
-          <span>Current map: <i>${this.current_map}</i></span>
-          `,
+          <span>${this.current_map}</span>`,
           classes: tooltipClasses,
+          trigger: 'hover click focus',
+          autoHide: false,
           delay: {
             show: 100,
             hide: 100
           }
         }">
         {{ playerIndicator }}
-      </span>
+      </a>
     </v-card-title>
     <v-card-subtitle>
+      
       <span :class="componentColor">{{ componentStatus }}</span>
     </v-card-subtitle>
     <v-card-text>
@@ -41,11 +45,13 @@
     },
     data: function() {
       return {
-        playerIndicator: "Loading...",
+        playerIndicator: "Getting player information...",
         server_name: "",
         current_map: "",
         max_players: "",
         playercount: "",
+        server_ip: "",
+        server_port: "",
         loading: false
       }
     },
@@ -64,6 +70,10 @@
             this.current_map = data.current_map
             this.max_players = data.max_players
             this.playercount = data.playercount
+            this.server_ip = data.ip
+            this.server_port = data.port
+            
+            this.loading = false
           })
           .catch((error) => console.error(error))
       }
@@ -76,6 +86,22 @@
       port: Number
     },
     computed: {
+      joinLink: function() {
+        if ( this.port && !this.loading ) {
+          return `steam://connect/${this.server_ip}:${this.server_port}`
+        }
+        return "#";
+      },
+      playerIndicatorColor: function() {
+        if ( this.port && !this.loading ) {
+          let p = (this.playercount / this.max_players) * 100
+
+          if (p > 80) return "red--text"
+          else if (p > 50) return "orange--text"
+          else return "green--text"
+        }
+        return "neutral--text";
+      },
       tooltipClasses: function() {
         let classes = [];
         classes.push((this.$vuetify.theme.dark) ? 'dark' : 'light');
@@ -106,15 +132,15 @@
 <style lang="scss" scoped>
 .v-card {
   display: flex;
-  align-items: center;
   vertical-align: middle;
   justify-content: space-between;
   flex-wrap: wrap;
+  user-select: none;
 
   & .v-card__title {
-    flex-grow: 1;
     display: flex;
-    justify-content: space-between;
+    flex-direction: column;
+    align-items: flex-start;
   }
     
   & .v-card__subtitle {
@@ -124,8 +150,11 @@
 
   .playerIndicator {
     font-size: 60%;
-    color: #555;
-    margin-left: 8px;
+    text-decoration: none;
+  }
+
+  .neutral--text {
+    color: #555 !important;
   }
 }
 </style>
