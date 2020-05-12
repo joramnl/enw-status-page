@@ -47,6 +47,7 @@
                 :description="item.description"
                 :status="item.status"
                 :message="item.message"
+                :port="27015"
               />
             </v-col>
           </v-row>
@@ -101,6 +102,11 @@
 
         return problems != 0;
       }
+    },
+    watch: {
+        loading: function(val) {
+            if (!val) console.log("done loading")
+        }
     },
     methods: {
       refresh: function () {

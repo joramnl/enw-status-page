@@ -1,9 +1,11 @@
 import Vue from 'vue'
 import App from './App.vue'
-import vuetify from './plugins/vuetify';
+import vuetify from './plugins/vuetify'
 import VTooltip from 'v-tooltip'
+import Vuex from 'vuex'
 
 Vue.use(VTooltip)
+Vue.use(Vuex)
 
 Vue.config.productionTip = false
 
