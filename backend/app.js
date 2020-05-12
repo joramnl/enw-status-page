@@ -22,7 +22,8 @@ app.use(function (err, req, res, next) {
 if (process.env.SSL_ENABLED == 1) {
     let options = {
         key: fs.readFileSync(process.env.SSL_CERT_KEY),
-        cert: fs.readFileSync(process.env.SSL_CERT_CHAIN)
+        cert: fs.readFileSync(process.env.SSL_CERT_CHAIN),
+        ca: fs.readFileSync(process.env.SSL_CERT_CA)
     };
     console.log("SSL", process.env.SSL_ENABLED)
     https.createServer(options, app).listen(process.env.PORT);
