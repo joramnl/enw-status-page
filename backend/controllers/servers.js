@@ -8,9 +8,11 @@ router.all('/', (req, res) => res.json({error: "No port specified"}))
 router.get('/:serverPort', (req, res) => {
     let port = req.params.serverPort
 
+    if (process.env.SERVER_IP == "") throw new Error("Server IP is not defined")
+
     ServerQuery.query({
         type: 'csgo',
-        host: '185.44.78.134',
+        host: process.env.SERVER_IP,
         port
     }).then((state) => {
         let server_name = state.name;
@@ -26,7 +28,8 @@ router.get('/:serverPort', (req, res) => {
             format: playercount + "/" + max_players
         })
     }).catch((error) => {
-        next(error)
+        console.error(error)
+        res.json({error})
     });
 })
 

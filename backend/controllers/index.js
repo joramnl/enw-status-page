@@ -15,6 +15,6 @@ router.get('/', (req, res) => {
     })
 })
 
-router.get('*', (req, res) => res.json({error: "Not Found 404"}))
+router.get('*', (req, res) => res.status(404).json({error: "Not Found 404"}))
 
 module.exports = router
