@@ -19,12 +19,14 @@ router.get('/:serverPort', (req, res) => {
         let current_map = state.map;
         let max_players = state.maxplayers
         let playercount = state.players.length
+        let players = state.players
 
         res.json({
             server_name,
             current_map,
             max_players,
             playercount,
+            players,
             format: playercount + "/" + max_players,
             ip: process.env.SERVER_IP,
             port: req.params.serverPort

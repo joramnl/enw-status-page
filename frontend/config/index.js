@@ -1,3 +1,3 @@
 export default {
-    API_URL: "https://status.extreme-network.net:2053"
+    API_URL: process.env.VUE_APP_API_URL
 }

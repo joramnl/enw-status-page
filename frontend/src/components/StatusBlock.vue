@@ -56,14 +56,17 @@
       }
     },
     async mounted() {
-      this.refresh()
+      if (this.port)
+        this.refresh()
     },
     methods: {
       refresh: async function() {
+        
         this.loading = true;
         await axios.get(config.API_URL + '/servers/' + this.port)
           .then((response) => {
             let data = response.data
+            console.log(process.env)
 
             this.playerIndicator = data.format + " players online"
             this.server_name = data.server_name
