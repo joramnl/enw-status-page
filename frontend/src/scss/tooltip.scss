@@ -132,3 +132,35 @@
       }
     }
   }
+
+  
+.p-tooltip {
+    .popover-inner {
+      flex-direction: column;
+      display: flex;
+      text-align: center;
+      width: 300px;
+    }
+  
+    .p-tooltip__server-name, 
+    .p-tooltip__map, 
+    .p-tooltip__players {
+      display: flex;
+      flex-wrap: wrap;
+    }
+  
+    .p-tooltip__server-name, 
+    .p-tooltip__map, 
+    .p-tooltip__players:not(:last-child) {
+      padding-bottom: 16px;
+    }
+  
+    strong {
+      flex-basis: 100%;
+      padding-bottom: 6px;
+    }
+  
+    span {
+      flex-basis: 100%;
+    }
+  }

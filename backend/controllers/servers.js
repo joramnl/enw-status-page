@@ -13,7 +13,8 @@ router.get('/:serverPort', (req, res) => {
     ServerQuery.query({
         type: 'csgo',
         host: process.env.SERVER_IP,
-        port
+        port,
+        maxAttempts: 3
     }).then((state) => {
         let server_name = state.name;
         let current_map = state.map;

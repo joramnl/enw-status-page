@@ -6,6 +6,12 @@ const app = express()
 const http = require('http');
 const https = require('https');
 const fs = require('fs');
+const morgan = require('morgan')
+const path = require('path')
+
+var accessLogStream = fs.createWriteStream(path.join(__dirname + '/logs/', 'access.log'), { flags: 'a' })
+
+app.use(morgan('combined', { stream: accessLogStream }))
 
 app.use(cors())
 

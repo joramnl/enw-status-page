@@ -2,28 +2,43 @@
   <v-card>
     <v-card-title>
       {{ title }}
-      <a 
+
+      <v-popover
+        trigger="hover click focus"
+        :autoHide=false
+        delay="100"
+        :popoverClass="tooltipClasses"
         v-if="port" 
-        class="playerIndicator"
-        :class="playerIndicatorColor"
-        :href="joinLink"
-        v-tooltip.bottom="{
-          content: `
-          <strong>${this.server_name}</strong><br><br>
-          <span>${this.current_map}</span>`,
-          classes: tooltipClasses,
-          trigger: 'hover click focus',
-          autoHide: false,
-          delay: {
-            show: 100,
-            hide: 100
-          }
-        }">
-        {{ playerIndicator }}
-      </a>
+      >
+        <a 
+          class="playerIndicator"
+          :class="playerIndicatorColor"
+          :href="joinLink"
+        >
+          {{ playerIndicator }}
+        </a>
+
+        <template slot="popover">
+
+          
+          <div class="p-tooltip__map">
+            <strong> 🗺️ Map  </strong>
+            <span> {{ current_map }} </span>
+          </div>
+
+          <div class="p-tooltip__players">
+            <strong> 🧍 Players </strong>
+            <span v-for="(player, index) in server_players" :key="index">
+              {{ player.name }}
+            </span>
+            <span v-if="server_players.length < 1">No players online right now.</span>
+          </div>
+
+        </template>
+      </v-popover>
+
     </v-card-title>
     <v-card-subtitle>
-      
       <span :class="componentColor">{{ componentStatus }}</span>
     </v-card-subtitle>
     <v-card-text>
@@ -52,6 +67,7 @@
         playercount: "",
         server_ip: "",
         server_port: "",
+        server_players: [],
         loading: false
       }
     },
@@ -66,7 +82,6 @@
         await axios.get(config.API_URL + '/servers/' + this.port)
           .then((response) => {
             let data = response.data
-            console.log(process.env)
 
             this.playerIndicator = data.format + " players online"
             this.server_name = data.server_name
@@ -75,6 +90,7 @@
             this.playercount = data.playercount
             this.server_ip = data.ip
             this.server_port = data.port
+            this.server_players = data.players
             
             this.loading = false
           })
@@ -108,6 +124,7 @@
       tooltipClasses: function() {
         let classes = [];
         classes.push((this.$vuetify.theme.dark) ? 'dark' : 'light');
+        classes.push('p-tooltip')
         return classes;
       },
       componentStatus: function () {
